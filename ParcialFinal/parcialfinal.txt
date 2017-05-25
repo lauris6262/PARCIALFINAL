@@ -1,0 +1,57 @@
+
+LAURA RAMIREZ RUIZ
+
+CREATE OR REPLACE FUNCTION findSum(x IN number, y IN number)
+RETURN number IS
+   suma  number := 0;
+BEGIN
+  DBMS_OUTPUT.PUT_LINE (X <=1 AND X >=99999);
+  EXCEPTION
+        -- Excepcion
+     WHEN validate_str THEN
+       dbms_output.put_line('string  is not in the range');
+    END;
+      IF MOD(X,3) = 1 THEN
+        X :=  3 * X +1;
+      ELSE
+        X := X / 3;
+      END IF;
+      IF MOD(X,5) = 1 THEN
+        X :=  5 * X +1;
+      ELSE
+        X := X / 5;
+      END IF;
+      suma := suma+1;
+    END;  
+   
+RETURN suma;
+END;
+
+DECLARE
+	validate_str EXCEPTION;
+BEGIN
+	RAISE validate_str;
+
+EXCEPTION
+
+	WHEN validate_str THEN
+	X NOT STRING;
+    X NOT STRING;
+    
+END;
+
+
+CREATE TABLE sums (
+    base_value varchar2(5) not null,
+    result_ varchar2(4000) not null)
+    
+CREATE TRIGGER find_sum_trigger
+    BEFORE INSERT  OF result_
+    ON sums
+    FOR EACH ROW
+    WHEN ( find_Sum <> 99999);
+      BEGIN
+        UPDATE sums
+        SET base_value = :find_Sum.X
+        WHERE base_value = :find_Sum.suma;
+      END;
